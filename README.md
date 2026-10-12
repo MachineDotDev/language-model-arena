@@ -84,13 +84,7 @@ The benchmarking job is configured to run on Machine GPU-powered runners. Instea
 jobs:
   benchmark:
     name: LLM Eval Benchmarking
-    runs-on:
-      - machine
-      - gpu=L40S
-      - cpu=4
-      - ram=32
-      - architecture=x64
-      - tenancy=spot
+    runs-on: machine/gpu=L40S/cpu=4/ram=32/architecture=x64/tenancy=spot
 ```
 
 This setup runs on a Machine runner with an L40S GPU, 4 vCPUs, and 32 GB RAM. By specifying `tenancy=spot`, you can take advantage of lower-cost spot pricing. Machine automatically searches globally for the best available spot instance.
@@ -101,14 +95,7 @@ To further control where runners are provisioned, you can specify allowed region
 jobs:
   benchmark:
     name: LLM Eval Benchmarking
-    runs-on:
-      - machine
-      - gpu=L40S
-      - cpu=4
-      - ram=32
-      - architecture=x64
-      - tenancy=spot
-      - regions=us-east-1,us-east-2
+    runs-on: machine/gpu=L40S/cpu=4/ram=32/architecture=x64/tenancy=spot/regions=us-east-1,us-east-2
 ```
 
 This limits provisioning to the listed AWS regions.
@@ -165,3 +152,15 @@ This repository is available under the [MIT License](LICENSE).
 - This repository is currently open for use as a template. While public forks are encouraged, we are not accepting Pull Requests at this time.
 
 _For questions or concerns, please open an issue._
+
+## Machine runtime limits
+
+These workflows run on Machine GPU runners. Install the GitHub App on this
+repository before starting a job. Start with $10 of free GPU time. No charge,
+no commitment.
+
+Unpaid teams can run one job at a time, for up to 30 minutes. Buy compute or a
+plan before running a longer training or evaluation job. A larger
+`timeout-minutes` value in GitHub doesn't remove the platform limit.
+
+See [billing and limits](https://machine.dev/docs/guides/billing/) for current limits.
